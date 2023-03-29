@@ -1,9 +1,5 @@
-interface User {
-  name: string;
-  id: number;
-}
-const user: User = {
-  name: "Ben",
-  id: 0,
-};
+import crud from "./lib/crud";
+import { user } from "./lib/interface";
+const mycrud = new crud();
+console.log(mycrud.name);
 console.log(user);
