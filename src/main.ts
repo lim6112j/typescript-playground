@@ -1,5 +1,7 @@
+import { ComplexCommand, Receiver, SimpleCommand } from "./lib/command";
 import crud from "./lib/crud";
 import { user } from "./lib/interface";
+import { Invoker } from "./lib/command";
 const mycrud = new crud();
 console.log(mycrud.name);
 console.log(user);
@@ -47,3 +49,10 @@ function argsPrint(str: string) {
   console.log(args[0]);
 }
 argsPrint("hello world");
+
+// command pattern
+const invoker = new Invoker();
+invoker.setOnStart(new SimpleCommand("Say Hi!"));
+const receiver = new Receiver();
+invoker.setOnFinish(new ComplexCommand(receiver, "Send email", "Save report"));
+invoker.doSomethingImportant();
